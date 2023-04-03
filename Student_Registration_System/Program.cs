@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Student_Registration_System.Models;
+using Student_Registration_System.Repository;
 
 namespace Student_Registration_System
 {
@@ -13,6 +14,7 @@ namespace Student_Registration_System
             builder.Services.AddControllersWithViews();
 
             builder.Services.AddControllers();
+            builder.Services.AddScoped<IStudentRepository, StudentRepository>();
             builder.Services.AddDbContext<StudentContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("DbCon")));
 
             var app = builder.Build();

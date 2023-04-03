@@ -1,8 +1,11 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
+<body style="background-image: url('https://img.freepik.com/premium-photo/background-topic-training-education-desk-with-books-bookcase-window-defocus-school-concept-greeting-card-with-start-learning_95018-358.jpg');background-repeat: no-repeat;background-attachment: fixed;
+  background-size: 100% 100%;">
+<link rel="stylesheet" href="~/css/StyleSheet.css">
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 style="font-family:Inter"><b>WELCOME TO DELOITTE UNIVERSITY !!</b></h1>
+    <input style="margin: auto" type="button" class="button-1" role="button" value="View Student record" onclick="location.href='@Url.Action("GetAllStudents", "Student")'" />
 </div>
+</body>

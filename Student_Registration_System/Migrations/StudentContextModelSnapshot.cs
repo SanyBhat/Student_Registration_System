@@ -24,33 +24,21 @@ namespace Student_Registration_System.Migrations
 
             modelBuilder.Entity("Student_Registration_System.Models.Course", b =>
                 {
-                    b.Property<int>("CourseID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CourseID"));
-
                     b.Property<string>("CourseName")
-                        .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.HasKey("CourseID");
+                    b.HasKey("CourseName");
 
                     b.ToTable("Courses");
                 });
 
             modelBuilder.Entity("Student_Registration_System.Models.Hobbies", b =>
                 {
-                    b.Property<string>("HobbieName")
+                    b.Property<string>("HobbiesName")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int?>("StudentID")
-                        .HasColumnType("int");
-
-                    b.HasKey("HobbieName");
-
-                    b.HasIndex("StudentID");
+                    b.HasKey("HobbiesName");
 
                     b.ToTable("Hobby");
                 });
@@ -63,11 +51,12 @@ namespace Student_Registration_System.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StudentID"));
 
-                    b.Property<int?>("CourseID")
+                    b.Property<int>("Age")
                         .HasColumnType("int");
 
                     b.Property<string>("CourseName")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime>("DateOfBirth")
                         .HasColumnType("datetime2");
@@ -77,6 +66,10 @@ namespace Student_Registration_System.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<string>("HobbiesName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -84,30 +77,30 @@ namespace Student_Registration_System.Migrations
 
                     b.HasKey("StudentID");
 
-                    b.HasIndex("CourseID");
+                    b.HasIndex("CourseName");
+
+                    b.HasIndex("HobbiesName");
 
                     b.ToTable("Students");
                 });
 
-            modelBuilder.Entity("Student_Registration_System.Models.Hobbies", b =>
-                {
-                    b.HasOne("Student_Registration_System.Models.Student", null)
-                        .WithMany("Hobbies")
-                        .HasForeignKey("StudentID");
-                });
-
             modelBuilder.Entity("Student_Registration_System.Models.Student", b =>
                 {
-                    b.HasOne("Student_Registration_System.Models.Course", "Course")
+                    b.HasOne("Student_Registration_System.Models.Course", "Courses")
                         .WithMany()
-                        .HasForeignKey("CourseID");
+                        .HasForeignKey("CourseName")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("Course");
-                });
+                    b.HasOne("Student_Registration_System.Models.Hobbies", "Hobbie")
+                        .WithMany()
+                        .HasForeignKey("HobbiesName")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-            modelBuilder.Entity("Student_Registration_System.Models.Student", b =>
-                {
-                    b.Navigation("Hobbies");
+                    b.Navigation("Courses");
+
+                    b.Navigation("Hobbie");
                 });
 #pragma warning restore 612, 618
         }

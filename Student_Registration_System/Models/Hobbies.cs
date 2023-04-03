@@ -1,12 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace Student_Registration_System.Models
 {
     public class Hobbies
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public string HobbieName { get; set; }
+        [Required]
+        public string HobbiesName { get; set; }
     }
 }

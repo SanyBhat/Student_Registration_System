@@ -6,9 +6,9 @@ namespace Student_Registration_System.Repository
     public interface IStudentRepository
     {
         IEnumerable<Student> GetAllStudents();
-
-        bool AddStudent(Student student);
-        bool UpdateStudent(int studid);
+        Student AddStudent(Student student);
+        Student GetStudent(int id);
+        bool Update(Student student);
         bool DeleteStudent(int studid);
     }
 }

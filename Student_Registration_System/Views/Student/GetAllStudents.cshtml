@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Student_Registration_System.Models.Student>
+
+@{
+    ViewData["Title"] = "GetAllStudents";
+}
+
+<body style="background-image: url('https://img.freepik.com/premium-photo/background-topic-training-education-desk-with-books-bookcase-window-defocus-school-concept-greeting-card-with-start-learning_95018-358.jpg');background-repeat: no-repeat;background-attachment: fixed;
+  background-size: 100% 100%;">
+    <h1 class="text-center" style="font-family:Inter; color:black"><b>Student Record</b></h1>
+    
+    @if (ViewData["Message"] != null)
+    {
+        <script language="javascript">
+            alert('@ViewData["Message"]');
+        </script>
+    }
+
+<link rel="stylesheet" href="~/css/StyleSheet.css">
+<p>
+    <input type="button" class="button-1" role="button" value="Enroll" onclick="location.href='@Url.Action("AddStudent", "Student")'" />
+
+</p>
+    <table  style="font-family:Arial; background-color:white" class="table">
+    <thead>
+        <tr>
+            <th>
+                Student ID
+            </th>
+            <th>
+                First Name
+            </th>
+            <th>
+                Last Name
+            </th>
+            <th>
+                Age
+            </th>
+            <th>
+                Course Opted
+            </th>
+            <th>
+                Hobby
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+             <td>
+                 @Html.DisplayFor(modelItem => item.CourseName)
+             </td>
+             <td>
+                 @Html.DisplayFor(modelItem => item.HobbiesName)
+             </td>
+            <td>
+                <a asp-action="UpdateStudent" asp-route-id="@item.StudentID">Edit</a> |
+                <a asp-action="Delete" asp-route-id="@item.StudentID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</body>
