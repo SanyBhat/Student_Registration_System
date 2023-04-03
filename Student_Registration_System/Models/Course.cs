@@ -7,7 +7,6 @@ namespace Student_Registration_System.Models
         [Key]
         public int CourseID { get; set; }
         [Required]
-        [StringLength(50)]
         public string CourseName { get;set; }
     }
 }
